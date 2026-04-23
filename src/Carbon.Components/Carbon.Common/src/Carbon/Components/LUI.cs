@@ -299,10 +299,10 @@ public class LUI : IDisposable
 		return cont;
 	}
 
-	public LuiContainer CreateSteamAvatar(LuiContainer container, LuiPosition position, LuiOffset offset, string steamId, string color = null, string name = "") => CreateSteamAvatar(container.name, position, offset, steamId, color, name);
-	public LuiContainer CreateSteamAvatar(LuiContainer container, LuiOffset offset, string steamId, string color = null, string name = "") => CreateSteamAvatar(container.name, LuiPosition.None, offset, steamId, color, name);
-	public LuiContainer CreateSteamAvatar(string parent, LuiOffset offset, string steamId, string color = null, string name = "") => CreateSteamAvatar(parent, LuiPosition.None, offset, steamId, color, name);
-	public LuiContainer CreateSteamAvatar(string parent, LuiPosition position, LuiOffset offset, string steamId, string color = null, string name = "")
+	public LuiContainer CreateSteamIcon(LuiContainer container, LuiPosition position, LuiOffset offset, string steamId, string color = null, string name = "") => CreateSteamIcon(container.name, position, offset, steamId, color, name);
+	public LuiContainer CreateSteamIcon(LuiContainer container, LuiOffset offset, string steamId, string color = null, string name = "") => CreateSteamIcon(container.name, LuiPosition.None, offset, steamId, color, name);
+	public LuiContainer CreateSteamIcon(string parent, LuiOffset offset, string steamId, string color = null, string name = "") => CreateSteamIcon(parent, LuiPosition.None, offset, steamId, color, name);
+	public LuiContainer CreateSteamIcon(string parent, LuiPosition position, LuiOffset offset, string steamId, string color = null, string name = "")
 	{
 		LuiContainer cont = CreateEmptyContainer(parent, name);
 		cont.SetAnchorAndOffset(position, offset);
@@ -1072,14 +1072,14 @@ public class LUI : IDisposable
 			if (luiComponents.TryGetValue<LuiRawImageComp>(LuiCompType.RawImage, out var img))
 			{
 				img.steamid = steamid;
-				if (!string.IsNullOrEmpty(color))
+				if (color != null)
 					img.color = color;
 			}
 			else
 			{
 				img = LuiPool.GetRawImage();
 				img.steamid = steamid;
-				if (!string.IsNullOrEmpty(color))
+				if (color != null)
 					img.color = color;
 				luiComponents.Add(img.type, img);
 			}
